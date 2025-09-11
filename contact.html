@@ -1,0 +1,121 @@
+<!--
+Sitio de muestra de te, pagina home, pagina novedades y pagina contacto
+CONOCIMIENTO:
+
+HTML: **
+CSS: *
+JS: *
+
+POR REFORZAR:
+
+HTML: 
+CSS: 
+JS: 
+
+POR APRENDER:
+
+HTML: 
+CSS: 
+JS: validaciones de formulario (en tiempo real) - mensajes de error (live)
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Nombre sitio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/news.html">Novedades</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link active" href="/contact.html">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container mt-3">
+            <form class="d-grid w-50" action="contact.html" method="get">
+                <h3>Contacto</h3>
+                <span>Asunto</span>
+                <input class="form-control" type="text" name="asunto" id="asunto">
+                <span class="text-danger" id="error-asunto">Ingrese un asunto</span>
+                <span>Correo</span>
+                <input class="form-control" type="text" name="correo" id="correo">
+                <span class="text-danger" id="error-correo">Ingrese un correo</span>
+                <span>Mensaje</span>
+                <textarea class="form-control" name="mensaje" id="mensaje" rows="10"></textarea>
+                <span class="text-danger" id="error-mensaje">Ingrese un mensaje</span>
+                <button class="mt-2 btn btn-outline-success" type="button" id="enviar">Enviar</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        //on click enviar
+        document.getElementById("enviar").onclick = function() {
+            let asunto = document.getElementById("asunto");
+            let correo = document.getElementById("correo");
+            let mensaje = document.getElementById("mensaje");
+            if (asunto.value === "" || correo.value === "" || mensaje.value === "") {
+                alert("Por favor, complete todos los campos.");
+                return;
+            }
+            //validar correo
+            let atIndex = correo.value.indexOf("@");
+            let dotIndex = correo.value.lastIndexOf(".");
+            if (atIndex < 1 || dotIndex < atIndex + 2 || dotIndex === correo.value.length - 1) {
+                alert("Por favor, ingrese un correo valido.");
+                return;
+            }
+            alert("Mensaje enviado. Gracias por contactarnos.");
+        }
+        document.getElementById("correo").onkeyup = function() {
+            let correo = document.getElementById("correo");
+            let errorCorreo = document.getElementById("error-correo");
+            let atIndex = correo.value.indexOf("@");
+            let dotIndex = correo.value.lastIndexOf(".");
+            if (atIndex < 1 || dotIndex < atIndex + 2 || dotIndex === correo.value.length - 1) {
+                errorCorreo.textContent = "Por favor, ingrese un correo valido.";
+            } else {
+                errorCorreo.textContent = "";
+            }
+        }
+        document.getElementById("asunto").onkeyup = function() {
+            let asunto = document.getElementById("asunto");
+            let errorAsunto = document.getElementById("error-asunto");
+            if (asunto.value.length < 3) {
+                errorAsunto.textContent = "El asunto debe tener al menos 3 caracteres.";
+            } else {
+                errorAsunto.textContent = "";
+            }
+        }
+
+        //validate mensaje on key up
+        document.getElementById("mensaje").onkeyup = function() {
+            let mensaje = document.getElementById("mensaje");
+            let errorMensaje = document.getElementById("error-mensaje");
+            if (mensaje.value.length < 10) {
+                errorMensaje.textContent = "El mensaje debe tener al menos 10 caracteres.";
+            } else {
+                errorMensaje.textContent = "";
+            }
+        }
+    </script>
+</html>
