@@ -23,33 +23,211 @@ JS: botones con interaccion - validaciones de formulario (en tiempo real) - mens
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            Pagina novedades
-        </title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <title>Novedades - Tea Company</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+        <style>
+            :root {
+                --base-color: #e3ebd4;
+                --primary-color: #8b9475;
+                --accent-color: #5c6346;
+                --light-color: #f4f7ed;
+                --dark-color: #2c3021;
+            }
+            
+            body {
+                background-color: var(--base-color) !important;
+            }
+
+            .navbar {
+                background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .nav-link {
+                position: relative;
+                padding-bottom: 5px !important;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: white;
+                transition: width 0.3s ease;
+            }
+
+            .nav-link:hover::after {
+                width: 100%;
+            }
+
+            .card {
+                background-color: var(--light-color);
+                border: none;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .btn-primary {
+                background-color: var(--primary-color) !important;
+                border-color: var(--primary-color) !important;
+            }
+
+            .btn-primary:hover {
+                background-color: var(--accent-color) !important;
+                border-color: var(--accent-color) !important;
+            }
+
+            .card-icon {
+                color: var(--accent-color);
+            }
+
+            footer {
+                background: var(--dark-color) !important;
+            }
+
+            footer .text-warning {
+                color: var(--base-color) !important;
+            }
+
+            footer a.text-white:hover {
+                color: var(--base-color) !important;
+                text-decoration: underline !important;
+            }
+
+            footer .btn-outline-light:hover {
+                background-color: var(--base-color);
+                color: var(--dark-color);
+            }
+
+            footer hr {
+                background-color: var(--base-color);
+                opacity: 0.2;
+            }
+
+            footer .fab {
+                transition: transform 0.3s ease;
+            }
+
+            footer .fab:hover {
+                transform: translateY(-3px);
+            }
+        </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Nombre sitio</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #ff893a;">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/img/logo.webp" alt="Logo" style="max-height: 50px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/index.html">Inicio</a>
+                        <li class="nav-item px-2">
+                            <a class="nav-link text-white" aria-current="page" href="/index.html" 
+                               style="font-weight: 500; transition: all 0.3s ease;">Inicio</a>
                         </li>
-                        <li class="nav-item">
-                        <a class="nav-link active" href="/news.html">Novedades</a>
+                        <li class="nav-item px-2">
+                            <a class="nav-link text-white" href="/news.html" 
+                               style="font-weight: 500; transition: all 0.3s ease;">Novedades</a>
                         </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="/contact.html">Contacto</a>
+                        <li class="nav-item px-2">
+                            <a class="nav-link text-white" href="/contact.html" 
+                               style="font-weight: 500; transition: all 0.3s ease;">Contacto</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Últimas Novedades</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="assets/img/te_chai.jpg" class="card-img-top" alt="Nuevo Té">
+                        <div class="card-body">
+                            <h5 class="card-title">Nuevo Té Chai Especiado</h5>
+                            <p class="card-text">Descubre nuestra nueva mezcla de té chai con especias seleccionadas.</p>
+                            <a href="#" class="btn btn-primary">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="assets/img/te_bosque_azul.jpg" class="card-img-top" alt="Té Especial">
+                        <div class="card-body">
+                            <h5 class="card-title">Edición Limitada</h5>
+                            <p class="card-text">Nueva colección de té de temporada con sabores únicos.</p>
+                            <a href="#" class="btn btn-primary">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+           <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+            <div class="container">
+                <div class="row text-center text-md-start">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Empresa</h5>
+                        <p>Somos una empresa dedicada a brindar las mejores experiencias en té, con productos de alta calidad y sabores únicos.</p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Productos</h5>
+                        <p><a href="#" class="text-white" style="text-decoration: none;">Té Negro</a></p>
+                        <p><a href="#" class="text-white" style="text-decoration: none;">Té Verde</a></p>
+                        <p><a href="#" class="text-white" style="text-decoration: none;">Té Chai</a></p>
+                        <p><a href="#" class="text-white" style="text-decoration: none;">Infusiones</a></p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contacto</h5>
+                        <p><i class="fas fa-home mr-3"></i> Santiago, Chile</p>
+                        <p><i class="fas fa-envelope mr-3"></i> info@tea.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> +56 2 2345 6789</p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Síguenos</h5>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <div class="row align-items-center">
+                    <div class="col-md-7 col-lg-8">
+                        <p>Copyright ©2024 Todos los derechos reservados por: 
+                            <a href="#" style="text-decoration: none;">
+                                <strong class="text-warning">Tea Company</strong>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-lg-4">
+                        <div class="text-center text-md-end">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-cc-visa"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-cc-mastercard"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-cc-paypal"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
